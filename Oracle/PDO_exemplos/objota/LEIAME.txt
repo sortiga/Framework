@@ -1,0 +1,10 @@
+##############################################################################
+#
+#   Todos os scripts de exemplo estão em sequencia no arquivo index.php
+#	*estão comentados
+#   acesse-o e descomente trecho por trecho. Assim será possível acompanhar
+#   passo-a-passo os scripts em funcionamento.
+#    
+#   www.objota.com.br
+#
+##############################################################################

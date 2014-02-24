@@ -1,0 +1,43 @@
+
+
+Relatório de críticas
+
+  - incluir crítica para variável sem valor default
+  - incluir crítica para variável com dois valores default 
+
+  
+select * from TAB_CRITICA  
+
+select null as cd_uf, a.COD as CODIGO, a.DESCRICAO, a.ID_VARIAVEIS as ID 
+  from TAB_VARIAVEIS a 
+ where a.VL_PADRAO_VARIAVEL_CARACTER is null and a.VL_PADRAO_VARIAVEL_NUMERICO is null
+ 
+  
+select null as cd_uf, a.COD as CODIGO, a.DESCRICAO, a.ID_VARIAVEIS as ID 
+  from TAB_VARIAVEIS a 
+ where a.VL_PADRAO_VARIAVEL_CARACTER is not null and a.VL_PADRAO_VARIAVEL_NUMERICO is not null
+  
+  
+  a.ID_ITEM = z.ID_ITEM and a.VALOR_NUMERICO is null and rtrim(ltrim(a.VALOR_CARACTER)) is null 
+  
+  
+uso de variável desativada em fórmula
+
+select * from tab_formula  
+    
+    
+update TAB_VARIAVEIS set STATUS = 'S' where ID_TIPO = 2  
+
+select null as cd_uf, CODIGO, DESCRICAO, id_formula as ID 
+  from TAB_FORMULA a 
+ Where (a.ESTADO <> 'APROVADA' OR a.DT_FIM_VIGENCIA is not null)
+   and (TIPO_FORMULA = 'P' or
+    0 < (select COUNT(*) from tab_formula where conteudo like '%' + a.CODIGO + '%' and ESTADO = 'APROVADA' and DT_FIM_VIGENCIA is null ))
+    
+
+select null as cd_uf, CODIGO, DESCRICAO, id_formula as ID 
+  from TAB_FORMULA a 
+ Where (a.ESTADO <> 'APROVADA' OR a.DT_FIM_VIGENCIA is not null)
+   and (TIPO_FORMULA = 'P' or
+    0 < (select COUNT(*) from tab_formula where conteudo like '%' + a.CODIGO + '%' and ESTADO = 'APROVADA' and DT_FIM_VIGENCIA is null ))
+   

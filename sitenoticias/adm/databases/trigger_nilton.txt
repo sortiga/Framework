@@ -1,0 +1,54 @@
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Trigger (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- See additional Create Trigger templates for more
+-- examples of different Trigger statements.
+--
+-- This block of comments will not be included in
+-- the definition of the function.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+DROP TRIGGER TR_ATUALIZA_MES_ANO 
+   ON  TAB_BASE_REPORT_CUSTEIO_TESTE
+   
+   AFTER INSERT,UPDATE
+AS 
+BEGIN
+	SET NOCOUNT ON;
+    DECLARE @TOTAL AS INT = 0;
+    DECLARE @MES AS INT = 0;
+    DECLARE @ANO AS INT = 0;
+    DECLARE @DATA AS DATE;
+    
+if @@ROWCOUNT = 0
+    return
+
+if exists (select 1 from Deleted) -- UPDATE operation
+    begin
+        update T set T.mes_ref = MONTH(T.DT_REFERENCIA), T.ano_ref = YEAR(T.DT_REFERENCIA)
+          from TAB_BASE_REPORT_CUSTEIO_TESTE T inner join Deleted D 
+            on T.DT_REFERENCIA = D.DT_REFERENCIA AND T.CD_UF = D.CD_UF AND T.ID_COMPOSICAO = D.ID_COMPOSICAO
+           AND T.ID_ITEM = D.ID_ITEM AND T.ID_SERVICO = D.ID_SERVICO
+    end
+else -- Insert operation
+    begin
+        update T set T.mes_ref = MONTH(T.DT_REFERENCIA), T.ano_ref = YEAR(T.DT_REFERENCIA)
+          from TAB_BASE_REPORT_CUSTEIO_TESTE T inner join inserted D 
+            on T.DT_REFERENCIA = D.DT_REFERENCIA AND T.CD_UF = D.CD_UF AND T.ID_COMPOSICAO = D.ID_COMPOSICAO
+           AND T.ID_ITEM = D.ID_ITEM AND T.ID_SERVICO = D.ID_SERVICO
+    end
+END
+GO

@@ -1,0 +1,50 @@
+{"request_number":1234,
+ "database_id":1,
+ "facts_qtt":5,
+ "facts":[{"owner":" 'BASE_PCC' ",
+           "table":" 'SRO_FATO_FATURAMENTO5' ",
+		   "dimensions":[{"owner":"BASE_PCC","table":"SRO_DIM_TEMPO"},
+		                 {"owner":"BASE_PCC","table":"SRO_DIM_LOCALIZACAO"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_PRODUTO"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_CLIENTE"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_LOJA"}
+		                ]
+		  },
+		  {"owner":" 'BASE_PCC' ",
+		   "table":" 'SRO_FATO_FATURAMENTO2' ",
+		   "dimensions":[{"owner":"BASE_PCC","table":"SRO_DIM_TEMPO"},
+		                 {"owner":"BASE_PCC","table":"SRO_DIM_LOCALIZACAO"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_PRODUTO"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_CLIENTE"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_LOJA"}
+						 ]
+		  },
+		  {"owner":" 'BASE_PCC' ",
+		   "table":" 'SRO_FATO_FATURAMENTO' ",
+		   "dimensions":[{"owner":"BASE_PCC","table":"SRO_DIM_TEMPO"},
+		                 {"owner":"BASE_PCC","table":"SRO_DIM_LOCALIZACAO"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_PRODUTO"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_CLIENTE"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_LOJA"}
+						]
+			},
+			{"owner":" 'BASE_PCC' ",
+			 "table":" 'SRO_FATO_FATURAMENTO3' ",
+			 "dimensions":[{"owner":"BASE_PCC","table":"SRO_DIM_TEMPO"},
+			               {"owner":"BASE_PCC","table":"SRO_DIM_LOCALIZACAO"},
+						   {"owner":"BASE_PCC","table":"SRO_DIM_PRODUTO"},
+						   {"owner":"BASE_PCC","table":"SRO_DIM_CLIENTE"},
+						   {"owner":"BASE_PCC","table":"SRO_DIM_LOJA"}
+						  ]
+			},
+			{"owner":" 'BASE_PCC' ",
+			 "table":" 'SRO_FATO_FATURAMENTO4' ",
+			 "dimensions":[{"owner":"BASE_PCC","table":"SRO_DIM_TEMPO"},
+			               {"owner":"BASE_PCC","table":"SRO_DIM_LOCALIZACAO"},
+						   {"owner":"BASE_PCC","table":"SRO_DIM_PRODUTO"},
+						   {"owner":"BASE_PCC","table":"SRO_DIM_CLIENTE"},
+						   {"owner":"BASE_PCC","table":"SRO_DIM_LOJA"}
+						   ]
+			}
+		 ]
+}

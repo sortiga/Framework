@@ -1,0 +1,55 @@
+Visual Studio 2005/2008/2010 – Dicas para desenvolvedores – Teclas de atalhos e algumas dicas escondidas que aumentam a produtividade
+09/08/2011 ? NICOLAS TARZIA ? DEVELOPMENT, DICAS, SHORTKEY, TECLAS DE ATALHO, TIPS, TRICKS, TRUQUES, VISUAL STUDIO ?  7 COMMENTS
+Trabalhando em Modo Full Screen no Visual Studio
+Alt+Shift+Enter tecla de atalho para deixar o Visual Studio em modo Full Screen
+Muitas vezes, ajuda muito a aparência em full screen para os desenvolvedores trabalharem.
+Editando
+Para Copiar uma linha na IDE apenas vá para o começo da linha vá para o começo da linha e aperte CTRL+C, não precisa fazer mais nada
+Para colar uma linha vá para o inicio da linha e apenas pressione CTRL+V
+Para recortar uma linha apenas vá para o começo da linha e aperte CTRL+X
+Para apagar uma linha vá para o começo da linha e pressione CTRL+SHIFT+L.
+Expandir e Colapsar o bloco de código
+Esta pequena tecla de atalho resolve a amior parte do meu tempo. Trabalho com muitas linhas de código e sempre me confundem muitas vezes é parametros que muda, ou algumas vezes é a propriedade que é alterada.
+Mas agora com esta tecla de atalho eu posso “minimizar” todo o metodo que eu encerrei a alteração.
+A tecla de atalho é Ctrl+M+M.
+Apenas vá para o comeco ou final do metodo/propriedade ou qualquer parte dentro do bloco que deseja expander/minimizar.
+Se você deseja “minimizar” todo o seu código, todos os seus metodos aperte CTRL+M+O. Esta tecla de atalho ME AJUDA MUITO.
+Identação e formatação Automática do texto
+Esta tecla de atalho me ajuda a escrever códigos mais bonitos e fáceis de entender.
+A tecla de atalho é Ctrl+K+D.
+Funciona tanto para C# como para VB.NET, como também funciona com paginas ASPX.
+Se você deseja formatar apenas o bloco de código que você está alterando digite: Ctrl+K+F
+Comentando e Descomentando código
+Esta dica salvou muito o meu tempo, até a sua mao ir no botão de comentario, demora um certo tempo.
+Apenas selecione o código que você quer comentar e aperte Ctrl+K+C, isto irá comentar o bloco de código que você está alterando.
+Para descomentar o código a regra é a mesma apenas digite Ctrl+K+U,isto irá descomentar o seu código.
+Gerar propriedades automaticamente
+Gerar uma propriedade “dummy” para você apenas copier e colar é um grande ganho em projetos grandes.
+Para isso apenas pressione prop + TAB + TAB, e isto irá gerar automaticamente sua propriedade.
+Aumentar e diminuir a identação
+Selecione o bloco de código que você deseja identar e apenas selecione TAB, caso contrario apenas selecione SHIFT + TAB
+Selecionando uma palavra automaticamente
+Esta é uma dica muito util, afinal você de vez em quando seleciona apenas uma palavra e acaba selecionando um pouco mais rapido. Vá a palavra que você quer selecionar, e aperte CTRL+W, a palavra inteira sera selecionada.
+Compilar e Debugar Teclas de Atalho e algumas dicas
+Para compiler a aplicação apenas aperte Ctrl+Shift+B
+Para começar a debugar apenas pressione F5
+Para parar de debugar apenas pressione Shift+F5
+Apenas aperte Alt+D+P e a janela de Atachar processo abrirá.
+Simply choose your web server process to attach and you will see without building your entire solution your solution has been attached to the debugger.
+Find
+Se você está familiarizado com o famoso Ctrl+F, uma boa dica é o Ctrl+Shift+F, onde procura em todos os arquivos dentro da solução, me ajuda.
+Alterando entre Design e Source
+F7 é a tecla de atalho para alterar entre o código e o design da sua aplicação. Isso funciona tanto para C# como para VB.NET
+Se você não quer perder a sua linha que você está editando mas deseja ir para a tela abaixo aperte Ctrl+PageDown
+Algumas outras teclas de atalhos que podem te ajudar muito
+Ctrl+Alt+L para abrir a Solution Explorer
+F4 para abrir a janela de propriedades
+Ctrl+Alt+X para mostrar a toolbox
+Ctrl++T para mostrar a tasklist
+Ctrl++E para mostrar a janela de erros
+Como navegar entre as varias tabs abertas dentro do visual studio
+Ctrl+TAB tecla de atalho que te ajuda a navegar entre as varias abas existentes
+Indo para a declaração do método/popriedade e depois voltando ao código que você estava
+Apenas pressione F12 para ir para a declaração do método/propriedade/variavel
+Depois pressione Ctrl+- para voltar ao código que você estava anteriormente.
+Para você que acha que o Visual Studio demora para abrir, recomendo inserir o parâmetro /nosplash no atalho do seu Visual Studio. Para mim está abrindo muito rápido o Visual Studio.

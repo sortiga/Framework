@@ -1,0 +1,14 @@
+{"request_number":1235,
+ "database_id":1,
+ "request_type":"GetCatalog",
+ "facts":[{"owner":" 'BASE_PCC' ",
+           "table":" 'SRO_FATO_FATURAMENTO5' ",
+		   "dimensions":[{"owner":"BASE_PCC","table":"SRO_DIM_TEMPO"},
+		                 {"owner":"BASE_PCC","table":"SRO_DIM_LOCALIZACAO"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_PRODUTO"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_CLIENTE"},
+						 {"owner":"BASE_PCC","table":"SRO_DIM_LOJA"}
+		                ]
+		  }
+		 ]
+}
