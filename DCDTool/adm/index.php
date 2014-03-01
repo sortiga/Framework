@@ -11,7 +11,7 @@
 		//echo "<pre>";
 		//echo print_r($_POST);
 		//echo "</pre>";
-
+        //exit;
 		if(!isset($conectado)){
 		  $conectado = 0;
 		}
@@ -30,12 +30,27 @@
 		
 		if($erros == null){
 			
-			$SQL = "SELECT id, nome, tipo FROM usuarios WHERE email = '$email' AND senha = SHA1('$senha');";
+			$SQL = "SELECT id, nome, tipo FROM usuario WHERE email = '$email' AND senha = SHA1('$senha');";
 			//echo "SQL = $SQL";
 			//echo "</br>";
 			$resultado = mysqli_query($conexao,$SQL);
 			
-			$total = mysqli_num_rows($resultado);
+			//$query = $conexao->prepare($SQL);
+            //$query->execute();
+            //$query->store_result();
+
+			//if ($result = $conexao->query($SQL)) {
+            //   /* determine number of rows result set */
+            //   $total = $result->num_rows;
+
+            //   printf("Result set has %d rows.\n", $total);
+            //   /* close result set */
+			//	$result->close();
+            //}
+            //exit;
+			
+			
+			$total = mysqli_num_rows($resultado); ///$query->num_rows;
 			//echo "Total = $total";
 			//echo "</br>";
 			//exit;

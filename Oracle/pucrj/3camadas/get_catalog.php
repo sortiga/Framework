@@ -38,6 +38,8 @@ try
 	   $saida["tables"] = array();
 
        $max = sizeof($jsond['facts']);
+	   //echo '</br>';echo "**********  max = $max ";echo '</br>';
+       //exit;
        //echo "Max = $max";
        $ind = 0;        // controla o loop principal das fatos informadas no json
 	   $ind_tables = 0; // controla o array de tabelas de saída
@@ -49,6 +51,7 @@ try
 		  //    Por fim processaremos as fatos
   	      $max2 = sizeof($jsond['facts'][$ind]['dimensions']);
 		  //echo "Max 2 = $max2";
+		  //exit;
 		  $ind2 = 0;
 		  // Primeiro Loop obtém qtdd de outrigger tables para cada dimensão
 		  // Em seguida ordenamos as dimensões de acordo com a qtt de outriggers para processar
@@ -58,8 +61,9 @@ try
 	         $owner_dim =  $jsond['facts'][$ind]['dimensions'][$ind2]['owner'];
 		     $table_dim =  $jsond['facts'][$ind]['dimensions'][$ind2]['table'];
 			 
-			 echo $owner_dim;echo "<br>";  //AQUI
-			 echo $table_dim;echo "<br>";  //AQUI
+			 //echo '****  Loop Principal - dimensões ';echo "</br>";
+			 //echo $owner_dim;echo "</br>";  //AQUI
+			 //echo $table_dim;echo "</br>";  //AQUI
 			 
 			 // Efetua o Loop para encontrar o topo da hierarquia de outriggers se existir
 			 $ind_origem = 0;
@@ -67,6 +71,9 @@ try
 			 $origem[$ind_origem]['table'] = $table_dim;
              $result_topo = $objDatabase->Get_Outriggers($objDatabase, $owner_dim, $table_dim);
 			 $result = $result_topo;
+			 //echo "</br>";echo '****** Retorno da Get outrigger para a dimensão atual *****';echo "</br>";
+			 //echo "<pre>";print_r($result);echo "</pre>";
+			 //echo "**************";echo "</br>";
              While ($result != null) {
 			   extract($result);
 			   $ind_origem++;
@@ -75,12 +82,12 @@ try
 			   $result_topo = $result;
 			   $result = $objDatabase->Get_Outriggers($objDatabase, $owner, $table);
              }			
-			 While (($result_topo != null) OR ($ind_origem >= 0)) {
+			 While ($ind_origem >= 1) {
                 // Tem Outrigger
-				Echo "ind_origem = $ind_origem";echo "</br>";
-				echo "<pre>";
-	            print_r($origem[$ind_origem]);
-	            echo "</pre>";
+				//Echo "ind_origem = $ind_origem";echo "</br>";
+				//echo "<pre>";
+	            //print_r($origem[$ind_origem]);
+	            //echo "</pre>";
 				
 				extract($origem[$ind_origem]);
 				//   echo "owner = $owner";echo "br";
@@ -97,15 +104,30 @@ try
 				}
  			    // Obtem a próxima filha da tabela outrigger
 				$ind_origem--;
-				if (ind_origem < 0){
+				if ($ind_origem < 0){
 				  $result_topo = null;
 				}
-             } 			 
+             }
+			 If ($ind_origem > 0){
+                 $ind_origem--;
+			 }
+			 extract($origem[$ind_origem]);
+			 $result = $objDatabase->Get_Estutura_Tabela($objDatabase, $owner, $table);
+       	     If ($result != null){
+			     $saida["tables"][$ind_tables] = $result;
+			     $ind_tables++;
+             }else {
+			     $msg = "Erro grave de processamento na recuperação da estrutura da tabela $owner - $table";
+			     die($msg);
+			 }  			 
 		     $ind2++;
 			 unset($origem);
 		  }
 	      $owner =  $jsond['facts'][$ind]['owner'];
 		  $table =  $jsond['facts'][$ind]['table'];
+		  //echo "**************  FATOS ****";echo "</br>";
+		  //echo "Tabela: $table";echo "</br>";
+  		  //echo "Owner: $owner";echo "</br>";
 		  // chama função que recupera a estrutura de colunas da fato
 	      $result = $objDatabase->Get_Estutura_Tabela($objDatabase, $owner, $table);
           If ($result != null){
@@ -126,6 +148,8 @@ try
 	echo "<pre>";
 	print_r($saida);
 	echo "</pre>";
+	$json = json_encode($saida);
+	echo $json;
 	exit;
 
     Return $saida;

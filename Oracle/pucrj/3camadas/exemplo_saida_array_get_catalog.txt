@@ -1,0 +1,593 @@
+Array
+(
+    [request_number] => 1235
+    [database_id] => 1
+    [tables] => Array
+        (
+            [0] => Array
+                (
+                    [owner] => BASE_PCC
+                    [table] => SRO_DIM_TEMPO
+                    [columns] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [COLUMN_NAME] => DATA_GREGORIANA
+                                    [DATA_TYPE] => DATE
+                                    [DATA_LENGTH] => 7
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [1] => Array
+                                (
+                                    [COLUMN_NAME] => ANO
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [2] => Array
+                                (
+                                    [COLUMN_NAME] => FLAG_FERIADO
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [3] => Array
+                                (
+                                    [COLUMN_NAME] => DATA_JULIANA
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [4] => Array
+                                (
+                                    [COLUMN_NAME] => MES
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [5] => Array
+                                (
+                                    [COLUMN_NAME] => DIA
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [6] => Array
+                                (
+                                    [COLUMN_NAME] => ID
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => N
+                                    [EH_PK] => S
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [7] => Array
+                                (
+                                    [COLUMN_NAME] => DIA_SEMANA
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                        )
+
+                )
+
+            [1] => Array
+                (
+                    [owner] => BASE_PCC
+                    [table] => SRO_DIM_LOCALIZACAO
+                    [columns] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [COLUMN_NAME] => BAIRRO
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [1] => Array
+                                (
+                                    [COLUMN_NAME] => PAIS
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [2] => Array
+                                (
+                                    [COLUMN_NAME] => ID
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => N
+                                    [EH_PK] => S
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [3] => Array
+                                (
+                                    [COLUMN_NAME] => LOGRADOURO
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [4] => Array
+                                (
+                                    [COLUMN_NAME] => UF
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [5] => Array
+                                (
+                                    [COLUMN_NAME] => CIDADE
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [6] => Array
+                                (
+                                    [COLUMN_NAME] => ZONA
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [7] => Array
+                                (
+                                    [COLUMN_NAME] => REGIAO
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [owner] => BASE_PCC
+                    [table] => SRO_DIM_PRODUTO
+                    [columns] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [COLUMN_NAME] => DESC_CATEGORIA
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [1] => Array
+                                (
+                                    [COLUMN_NAME] => CATEGORIA
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [2] => Array
+                                (
+                                    [COLUMN_NAME] => DESC_SUB_CATEGORIA
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [3] => Array
+                                (
+                                    [COLUMN_NAME] => ID
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => N
+                                    [EH_PK] => S
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [4] => Array
+                                (
+                                    [COLUMN_NAME] => NOME
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [5] => Array
+                                (
+                                    [COLUMN_NAME] => SUB_CATEGORIA
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                        )
+
+                )
+
+            [3] => Array
+                (
+                    [owner] => BASE_PCC
+                    [table] => SRO_DIM_CLIENTE
+                    [columns] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [COLUMN_NAME] => IDADE
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [1] => Array
+                                (
+                                    [COLUMN_NAME] => ID
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => N
+                                    [EH_PK] => S
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [2] => Array
+                                (
+                                    [COLUMN_NAME] => ESTADO_CIVIL
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [3] => Array
+                                (
+                                    [COLUMN_NAME] => FAIXA_RENDA
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [4] => Array
+                                (
+                                    [COLUMN_NAME] => SEXO
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [5] => Array
+                                (
+                                    [COLUMN_NAME] => NOME
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [6] => Array
+                                (
+                                    [COLUMN_NAME] => CD_RELIGIAO
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                        )
+
+                )
+
+            [4] => Array
+                (
+                    [owner] => BASE_PCC
+                    [table] => SRO_TESTE_FK
+                    [columns] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [COLUMN_NAME] => COLUNA
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 20
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [1] => Array
+                                (
+                                    [COLUMN_NAME] => ID_TESTE
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => N
+                                    [EH_PK] => S
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                        )
+
+                )
+
+            [5] => Array
+                (
+                    [owner] => BASE_PCC
+                    [table] => SRO_DIM_LOJA
+                    [columns] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [COLUMN_NAME] => ID_TESTE_2
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => SRO_TESTE_FK
+                                    [NVL(Y.FK_OWNER,'N/A')] => BASE_PCC
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => ID_TESTE
+                                )
+
+                            [1] => Array
+                                (
+                                    [COLUMN_NAME] => ID_TESTE
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => SRO_TESTE_FK
+                                    [NVL(Y.FK_OWNER,'N/A')] => BASE_PCC
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => ID_TESTE
+                                )
+
+                            [2] => Array
+                                (
+                                    [COLUMN_NAME] => TAMANHO_LOJA
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [3] => Array
+                                (
+                                    [COLUMN_NAME] => TIPO_LOJA
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [4] => Array
+                                (
+                                    [COLUMN_NAME] => ID
+                                    [DATA_TYPE] => NUMBER
+                                    [DATA_LENGTH] => 22
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => N
+                                    [EH_PK] => S
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                            [5] => Array
+                                (
+                                    [COLUMN_NAME] => NOME
+                                    [DATA_TYPE] => VARCHAR2
+                                    [DATA_LENGTH] => 200
+                                    [NVL(Z.DATA_PRECISION,0)] => 0
+                                    [NVL(Z.DATA_SCALE,0)] => 0
+                                    [NULLABLE] => S
+                                    [EH_PK] => N
+                                    [NVL(Y.FK_TABLE_NAME,'N/A')] => N/A
+                                    [NVL(Y.FK_OWNER,'N/A')] => N/A
+                                    [NVL(Y.FK_COLUMN_NAME,'N/A')] => N/A
+                                )
+
+                        )
+
+                )
+
+            [6] => Array
+                (
+                    [owner] =>  BASE_PCC 
+                    [table] =>  SRO_FATO_FATURAMENTO5 
+                )
+
+        )
+
+)

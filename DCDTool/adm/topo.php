@@ -20,6 +20,9 @@
 <link rel="stylesheet" type="text/css" href="../../engine/css/icons/24x24.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="../../engine/css/icons/32x32.css" media="screen" />
 
+<link rel="stylesheet" type="text/css" href="../../engine/css/sunny/jquery-ui-1.10.4.custom.css" media="screen" />
+
+
 <!-- Demo and Plugin Stylesheets -->
 <link rel="stylesheet" type="text/css" href="../../engine/css/demo.css" media="screen" />
 
@@ -32,6 +35,8 @@
 <script type="text/javascript" src="../../engine/js/jquery-1.7.2.min.js"></script>
 
 <!-- jQuery-UI Dependent Scripts -->
+<script type="text/javascript" src="../../engine/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../../engine/js/jquery-ui-1.10.4.custom.min.js"></script>
 
 
 
