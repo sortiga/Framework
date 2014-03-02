@@ -496,8 +496,8 @@ class BALDatabaseMySQL extends AbstractDatabase
        If ($query1 = mysql_fetch_row($resqueries)) {	   
        	   $sql = $query1[2];
 		   //echo '</br>';echo '**********  Outriggers ';echo '</br>';
-   		   $owner = str_replace("'", "", $owner);
-		   $table = str_replace("'", "", $table);
+   		   $owner = trim(str_replace("'", "", $owner));
+		   $table = trim(str_replace("'", "", $table));
 		   $owner = "'".$owner."'";
 		   $table = "'".$table."'";
        	   $sql = str_replace("%owner%", $owner, $sql);
@@ -552,7 +552,7 @@ class BALDatabaseMySQL extends AbstractDatabase
 	   Return $out_vector[0];
 	}
 
-	public function Get_Estutura_Tabela(AbstractDatabase $objDatabase, $owner, $table) {
+	public function Get_Estutura_Tabela(AbstractDatabase $objDatabase, $owner, $table, $type) {
 	   // Obtem a sentença a ser executada 
 	   $objDatabase->SetTipoQuery(8);
 	   $resqueries= $objDatabase->Get_Queries($objDatabase);
@@ -561,10 +561,11 @@ class BALDatabaseMySQL extends AbstractDatabase
 	   //echo '</br>';echo '**********  Get Estrutura Tabela ';echo '</br>';
        If ($query1 = mysql_fetch_row($resqueries)) {	   
        	   $sql = $query1[2];
-		   $owner = str_replace("'", "", $owner);
-		   $table = str_replace("'", "", $table);
+		   $owner = trim(str_replace("'", "", $owner));
+		   $table = trim(str_replace("'", "", $table));
  		   $out_vector["owner"] = $owner; 
 		   $out_vector["table"] = $table;
+		   $out_vector["type"] = $type;
 		   $owner = "'".$owner."'";
 		   $table = "'".$table."'";
        	   $sql = str_replace("%owner%", $owner, $sql);

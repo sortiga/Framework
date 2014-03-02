@@ -93,7 +93,7 @@ try
 				//   echo "owner = $owner";echo "br";
 				//   echo "table = $table";echo "br";
 				// Obtem a estrutura da tabela
-				$result = $objDatabase->Get_Estutura_Tabela($objDatabase, $owner, $table);
+				$result = $objDatabase->Get_Estutura_Tabela($objDatabase, $owner, $table, 'Outrigger');
 				// Inclui a estrutura da tabela no vetor de saída
          	    If ($result != null){
 				       $saida["tables"][$ind_tables] = $result;
@@ -112,7 +112,7 @@ try
                  $ind_origem--;
 			 }
 			 extract($origem[$ind_origem]);
-			 $result = $objDatabase->Get_Estutura_Tabela($objDatabase, $owner, $table);
+			 $result = $objDatabase->Get_Estutura_Tabela($objDatabase, $owner, $table, 'Dimension');
        	     If ($result != null){
 			     $saida["tables"][$ind_tables] = $result;
 			     $ind_tables++;
@@ -129,7 +129,11 @@ try
 		  //echo "Tabela: $table";echo "</br>";
   		  //echo "Owner: $owner";echo "</br>";
 		  // chama função que recupera a estrutura de colunas da fato
-	      $result = $objDatabase->Get_Estutura_Tabela($objDatabase, $owner, $table);
+	      $result = $objDatabase->Get_Estutura_Tabela($objDatabase, $owner, $table, 'Fact');
+	//echo "<pre>";
+	//print_r($result);
+	//echo "</pre>";
+	//exit;
           If ($result != null){
               $saida["tables"][$ind_tables] = $result;
               $ind_tables++;
