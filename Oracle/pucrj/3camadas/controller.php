@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include_once('model.php');
 
 class BALDatabaseMySQL extends AbstractDatabase 
@@ -623,7 +623,7 @@ class BALDatabaseMySQL extends AbstractDatabase
 
 	public function Print_Results($result) {
 
-   	   echo '<h5>Exibindo dados retornados pela extens�o PDO"</h5>';
+   	   echo '<h5>Exibindo dados retornados pela extensão PDO"</h5>';
        echo "<table border='1'>\n";
        foreach($result as $row ) 
        {
@@ -636,8 +636,189 @@ class BALDatabaseMySQL extends AbstractDatabase
         }
         echo "</table>\n";
     }
+
+	public function insert_table($owner,$table,$idTipo,$columns,$con) {
 	
+	      //Checar se a tabela existe.  Se existir pegar o id, caso contrário, insere
+    	  $sql = "Select idTabelas from Tabelas where nome = '".$table."' and owner = '".$owner."' ";
+//echo $sql;
+		  $query = mysql_query($sql,$con);
+		  If (mysql_error($con)!= null){
+			  //echo "1"; echo"<br>".mysql_error($con); 
+			  Return -1;
+		  }
+		  If (mysql_num_rows($query)>0){
+			  $query_result = mysql_fetch_assoc($query);
+		      extract($query_result);
+			  $id = $idTabelas;
+		  }else{
+    	      $sql = "Insert Into Tabelas(nome, owner, idTipo_Tabela) values ('".$table."','".$owner."',$idTipo)";		   
+			  $query = mysql_query($sql,$con);
+		      If (mysql_error($con)!= null){
+			      //echo "2"; echo"<br>".mysql_error($con);
+				  Return -1;
+		      }
+		      $id = mysql_insert_id();
+          }
+		  $ind = 0;
+          $max = sizeof($columns);
+		  While ($ind <= ($max-1)){
+		     $col = $ind + 1;
+			 $aceita_nulls = 0;
+			 If ($columns[$ind]['NULLABLE'] == 'S'){
+			     $aceita_nulls = 1;
+			 }
+			 $pk = 0;
+			 If ($columns[$ind]['EH_PK'] == 'S'){
+			     $pk = 1;
+			 }
+			 $fk = 1;
+			 If ($columns[$ind]['FK_TABLE_NAME'] == 'N/A'){
+			     $fk = 0;
+			 }			 
+			 // Verificar se a coluna já existe, casa exista, fazer update, caso contrário fazer insert
+    	     $sql = "Select idColuna from coluna where nome = '".$columns[$ind]['COLUMN_NAME']."' and Tabelas_idTabelas = $id ";		   
+             //echo $ind;echo "</br>";
+			 $query = mysql_query($sql,$con);
+		     If (mysql_error($con)!= null){
+			     //echo "3"; echo"<br>".mysql_error($con);
+				 Return -1;
+		     }
+		     If (mysql_num_rows($query)>0){
+				$query_result = mysql_fetch_assoc($query);
+		         extract($query_result);
+			     $col = $idColuna;
+				 $sql = "Update coluna ";
+				 $sql = $sql." Set tamanho_coluna = ".$columns[$ind]['DATA_LENGTH'].",";
+				 $sql = $sql." aceita_valor_nulo = $aceita_nulls,";
+				 $sql = $sql." faz_parte_pk = $pk,";
+				 $sql = $sql." chave_estrangeira = $fk,";
+				 $sql = $sql." Tipo_Dados = '".$columns[$ind]['DATA_TYPE']."' ";
+				 $sql = $sql." Where Tabelas_idTabelas = $id and idColuna = $col ";
+		     }else{			 
+    	         $sql = "Insert Into coluna ";
+			     $sql = $sql."(Tabelas_idTabelas, idColuna, nome, tamanho_coluna,";
+			     $sql = $sql."aceita_valor_nulo, faz_parte_pk, chave_estrangeira, Tipo_Dados) ";
+			     $sql = $sql."values ($id,$col,'".$columns[$ind]['COLUMN_NAME']."',".$columns[$ind]['DATA_LENGTH'].",";
+                 $sql = $sql."$aceita_nulls,$pk,$fk,'".$columns[$ind]['DATA_TYPE']."')";					 
+			 }
+	         $query = mysql_query($sql,$con);
+		     If (mysql_error($con)!= null){
+		         //echo "4"; echo"<br>".mysql_error($con);
+				 Return -1;
+		     }
+			 // Efetua o tratamento da chave estrangeira
+			 If ($fk == 1){
+			     // Recupera os ids da tabela e da coluna
+                 $table_fk = $columns[$ind]['FK_TABLE_NAME'];
+                 $owner_fk = $columns[$ind]['FK_OWNER'];		
+                 $column_fk = $columns[$ind]['FK_COLUMN_NAME'];
+				 $tipo_equivalencia = 'FK';
+    	         $sql = "Select idTabelas from tabelas where nome = '".$table_fk."' and owner = '".$owner_fk."' ";		   
+		         $query = mysql_query($sql,$con);
+		         If (mysql_error($con)!=null){
+			         //echo "5"; echo"<br>".mysql_error($con);
+					 Return -1;
+		         }
+		         If (mysql_num_rows($query)>0){
+                     $query_result = mysql_fetch_assoc($query);
+					 extract($query_result);
+   				     $id_fk = $idTabelas; 
+    	             $sql = "Select idColuna from coluna where nome = '".$column_fk."' and Tabelas_idTabelas = $id_fk ";		   
+		             $query = mysql_query($sql,$con);
+		             If (mysql_error($con)!= null){
+			             //echo "6"; echo"<br>".mysql_error($con);
+						 Return -1;
+		             }
+		             If (mysql_num_rows($query)>0){
+                         $query_result = mysql_fetch_assoc($query);
+						 extract($query_result);
+   	    			     $id_col_fk = $idColuna; 
+                         $sql = "Select count(0) as total from equivalencias ";
+                         $sql = $sql." where idTabelas_equivalencia_1 = ".$id_fk." and idColuna_equivalencia_1 = ".$id_col_fk." ";
+                         $sql = $sql."   and idTabelas_equivalencia_2 = ".$id." and idColuna_equivalencia_2 = ".$col." ";
+                         $query = mysql_query($sql,$con);
+                         If ( mysql_error($con)!= null){
+                            //echo "6"; echo"<br>".mysql_error($con);
+							Return -1;
+                         }
+                         $query_result = mysql_fetch_assoc($query);
+                         extract($query_result);
+                         If ($total == 0){ 
+                       		 $sql = "Insert into equivalencias (idTabelas_equivalencia_1, idColuna_equivalencia_1, ";
+                       		 $sql = $sql."idTabelas_equivalencia_2, idColuna_equivalencia_2, tipo_equivalencia) ";
+                       		 $sql = $sql." values ($id_fk, $id_col_fk, $id, $col, '".$tipo_equivalencia."') ";
+                       		 $query = mysql_query($sql,$con);					 
+                         }
+					 }
+				 } else {
+					 //echo "7"; echo"<br>".mysql_error($con);		
+			         Return -1;				 
+			     }
+			 }
+			 $ind++;
+		  }
+		  Return $id;  
+    }
+
+	public function insert_relations($id,$vet,$con) {
+	      $ind = 0;
+          $max = sizeof($vet);
+		  //echo "antes insert relation $id";
+		  While ($ind <= ($max-1)){
+             If ($id == null){
+			     $tipo_mae = 3;
+				 $tipo_filha = $vet[$ind]['TIPO'];
+				 $id_mae = $vet[$ind]['MAE'];
+				 $id_filha = $vet[$ind]['FILHA'];				 
+			  } else {
+			     $tipo_mae = 1;
+				 $tipo_filha = 2;
+				 $id_mae = $vet[$ind];
+				 $id_filha = $id;
+		      }
+			  $sql = "Select count(0) as total from Tabelas_Relacoes ";
+			  $sql = $sql." where idTabelas_Mae = ".$id_mae." and idTipoTabMae = ".$tipo_mae." ";
+			  $sql = $sql."   and idTabelas_filha = ".$id_filha." and idTipoTabFilha = ".$tipo_filha." ";
+			  $query = mysql_query($sql,$con);
+			  If ( mysql_error($con)!= null){
+			     Return -1;
+			  }
+              $query_result = mysql_fetch_assoc($query);
+			  extract($query_result);
+   			  If ($total == 0){ 
+       	          $sql = "Insert Into Tabelas_Relacoes (idTabelas_Mae, idTipoTabMae, idTabelas_Filha, idTipoTabFilha) values ($id_mae,$tipo_mae,$id_filha,$tipo_filha)";		   
+		          $query = mysql_query($sql,$con);
+			      If (mysql_error($con)!= null){
+			          Return -1;
+			      }
+			  }  
+		    $ind++;
+			}
+		Return 1;
+    }
+
+	public function InsErrMsg($idAgendamento, $deMsg, $con) {
+
+       	   $sql = "Insert Into MsgAgendamento(idAgendamento, deMsg, dtMsg) values ($idAgendamento,'".$deMsg."',now())";		   
+ 	       $query = mysql_query($sql,$con);
+		   If (mysql_error($con)!= null){
+			   Return -1;
+		   }else {
+			   Return 1;
+		   }
+    }
 	
+	public function UpdAgendamento($idAgendamento,$status,$con) {
+
+       	   $sql = "Update Agendamento Set status = '".$status."' Where idAgendamento = $idAgendamento";		   
+ 	       $query = mysql_query($sql,$con);
+		   If (mysql_error($con)!= null){
+			   Return -1;
+		   }else {
+			   Return 1;
+		   }
+    }
 	
 }
 ?>
