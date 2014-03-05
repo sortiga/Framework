@@ -636,11 +636,11 @@ class BALDatabaseMySQL extends AbstractDatabase
         echo "</table>\n";
     }
 
-	public function insert_table($owner,$table,$idTipo,$columns,$con,,$idDatabase) {
+	public function insert_table($owner,$table,$idTipo,$columns,$con,$idDatabase) {
 	
 	      //Checar se a tabela existe.  Se existir pegar o id, caso contrário, insere
     	  $sql = "Select idTabelas from Tabelas where nome = '".$table."' and owner = '".$owner."' ";
-//echo $sql;
+          //echo $sql;
 		  $query = mysql_query($sql,$con);
 		  If (mysql_error($con)!= null){
 			  //echo "1"; echo"<br>".mysql_error($con); 
@@ -658,11 +658,13 @@ class BALDatabaseMySQL extends AbstractDatabase
 				  Return -1;
 		      }
 		      $id = mysql_insert_id();
-    	      $sql = "Insert Into Modelos (nome, Catalogo_Database_idCatalogo_Database, idFactTable) values ('".$table."',$idDatabase,$id)";		   
-			  $query = mysql_query($sql,$con);
-		      If (mysql_error($con)!= null){
-			      //echo "2-2"; echo"<br>".mysql_error($con);
-				  Return -1;
+			  If ($idTipo == 2){
+    	          $sql = "Insert Into Modelos (nome, Catalogo_Database_idCatalogo_Database, idFactTable) values ('".$table."',$idDatabase,$id)";		   
+			      $query = mysql_query($sql,$con);
+		          If (mysql_error($con)!= null){
+			          //echo "2-2"; echo"<br>".mysql_error($con);
+				      Return -1;
+				  }
 		      }
           }
 		  $ind = 0;
@@ -744,7 +746,7 @@ class BALDatabaseMySQL extends AbstractDatabase
                          $sql = $sql."   and idTabelas_equivalencia_2 = ".$id." and idColuna_equivalencia_2 = ".$col." ";
                          $query = mysql_query($sql,$con);
                          If ( mysql_error($con)!= null){
-                            //echo "6"; echo"<br>".mysql_error($con);
+                            //echo "7"; echo"<br>".mysql_error($con);
 							Return -1;
                          }
                          $query_result = mysql_fetch_assoc($query);
@@ -757,7 +759,7 @@ class BALDatabaseMySQL extends AbstractDatabase
                          }
 					 }
 				 } else {
-					 //echo "7"; echo"<br>".mysql_error($con);		
+					 //echo "8"; echo"<br>".mysql_error($con);		
 			         Return -1;				 
 			     }
 			 }

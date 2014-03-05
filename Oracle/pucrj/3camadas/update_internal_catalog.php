@@ -42,7 +42,8 @@ try
 	//echo $jsond["request_number"];echo "</br>";
     //echo $sol_sent;echo "</br>";	
 	//exit;
-	
+	echo "****** Início ";
+	echo "</br>";
 	If ($jsond["request_number"] == $sol_sent){
        $max = sizeof($jsond['tables']);
 	   //echo '</br>';echo "**********  max = $max ";echo '</br>';
@@ -58,11 +59,11 @@ try
           $owner = $jsond['tables'][$ind]['owner'];
 		  $table = $jsond['tables'][$ind]['table'];
 		  $columns = $jsond['tables'][$ind]['columns'];
-		  //echo '</br>';
-		  //echo '**************************';echo '</br>';
+		  echo '</br>';
+		  echo '**************************';echo '</br>';
 		  //echo $idTipo;echo '</br>';
 		  //echo $owner;echo '</br>';
-		  //echo $table;echo '</br>';
+		  echo "processando $table";echo '</br>';
 //          echo "<pre>";
 //		  print_r($columns);
 //		  echo "</pre>";
@@ -70,8 +71,9 @@ try
 		  
 		  If ($idTipo == 'Dimension'){
 		     $idTipo = 1;
-			 $vet_dim[$ind_dim] = $objDatabase->insert_table($owner,$table,$idTipo,$columns,$con);			 
+			 $vet_dim[$ind_dim] = $objDatabase->insert_table($owner,$table,$idTipo,$columns,$con,$database_id);			 
 			 If ($vet_dim[$ind_dim] == - 1){
+			     //echo "Erro 1";echo "<br>";
 			     $erro++;
 			 } else {			 
 			     If ($ultima_outrigger != null){
@@ -86,8 +88,9 @@ try
 		  }
 		  If ($idTipo == 'Fact'){
 		     $idTipo = 2;
-			 $id = $objDatabase->insert_table($owner,$table,$idTipo,$columns,$con);
+			 $id = $objDatabase->insert_table($owner,$table,$idTipo,$columns,$con,$database_id);
 			 If ($id == - 1){
+			     //echo "Erro 2";echo "<br>";
 			     $erro++;
 			 } else {
 			     //echo $id;echo "<br>";
@@ -124,8 +127,9 @@ try
 		  If ($idTipo == 'Outrigger'){
 		     $idTipo = 3;
 
-			 $id = $objDatabase->insert_table($owner,$table,$idTipo,$columns,$con);			 
+			 $id = $objDatabase->insert_table($owner,$table,$idTipo,$columns,$con,$database_id);			 
 			 If ($id == - 1){
+			     //echo "Erro 3";echo "<br>";
 			     $erro++;
 			 } else {			 
 			     If ($ultima_outrigger == null){
@@ -158,6 +162,7 @@ try
 	}	
 	If ($erro > 0){
 		mysql_query('ROLLBACK');
+		echo "$erro";echo "<br>";
 		//echo "ROLLBACK 0!!!";
         mysql_query('SET AUTOCOMMIT=0'); 
 		mysql_query('START TRANSACTION');  
@@ -169,7 +174,7 @@ try
 	mysql_query('COMMIT');
 	//echo "COMMIT 1!!!";
     mysql_query('SET AUTOCOMMIT=1'); 
-   Return true;
+   Return '***Acabou';
 }
 catch(Exception $e)
  {
