@@ -496,8 +496,8 @@ class BALDatabaseMySQL extends AbstractDatabase
        If ($query1 = mysql_fetch_row($resqueries)) {	   
        	   $sql = $query1[2];
 		   //echo '</br>';echo '**********  Outriggers ';echo '</br>';
-   		   $owner = trim(str_replace("'", "", $owner));
-		   $table = trim(str_replace("'", "", $table));
+   		   $owner = str_replace("'", "", $owner);
+		   $table = str_replace("'", "", $table);
 		   $owner = "'".$owner."'";
 		   $table = "'".$table."'";
        	   $sql = str_replace("%owner%", $owner, $sql);
@@ -552,7 +552,7 @@ class BALDatabaseMySQL extends AbstractDatabase
 	   Return $out_vector[0];
 	}
 
-	public function Get_Estutura_Tabela(AbstractDatabase $objDatabase, $owner, $table, $type) {
+	public function Get_Estutura_Tabela(AbstractDatabase $objDatabase, $owner, $table) {
 	   // Obtem a sentenÁa a ser executada 
 	   $objDatabase->SetTipoQuery(8);
 	   $resqueries= $objDatabase->Get_Queries($objDatabase);
@@ -561,11 +561,10 @@ class BALDatabaseMySQL extends AbstractDatabase
 	   //echo '</br>';echo '**********  Get Estrutura Tabela ';echo '</br>';
        If ($query1 = mysql_fetch_row($resqueries)) {	   
        	   $sql = $query1[2];
-		   $owner = trim(str_replace("'", "", $owner));
-		   $table = trim(str_replace("'", "", $table));
+		   $owner = str_replace("'", "", $owner);
+		   $table = str_replace("'", "", $table);
  		   $out_vector["owner"] = $owner; 
 		   $out_vector["table"] = $table;
-		   $out_vector["type"] = $type;
 		   $owner = "'".$owner."'";
 		   $table = "'".$table."'";
        	   $sql = str_replace("%owner%", $owner, $sql);
@@ -637,7 +636,7 @@ class BALDatabaseMySQL extends AbstractDatabase
         echo "</table>\n";
     }
 
-	public function insert_table($owner,$table,$idTipo,$columns,$con) {
+	public function insert_table($owner,$table,$idTipo,$columns,$con,,$idDatabase) {
 	
 	      //Checar se a tabela existe.  Se existir pegar o id, caso contr√°rio, insere
     	  $sql = "Select idTabelas from Tabelas where nome = '".$table."' and owner = '".$owner."' ";
@@ -652,13 +651,19 @@ class BALDatabaseMySQL extends AbstractDatabase
 		      extract($query_result);
 			  $id = $idTabelas;
 		  }else{
-    	      $sql = "Insert Into Tabelas(nome, owner, idTipo_Tabela) values ('".$table."','".$owner."',$idTipo)";		   
+    	      $sql = "Insert Into Tabelas(nome, owner, idTipo_Tabela, idCatalogo_Database) values ('".$table."','".$owner."',$idTipo,$idDatabase)";		   
 			  $query = mysql_query($sql,$con);
 		      If (mysql_error($con)!= null){
 			      //echo "2"; echo"<br>".mysql_error($con);
 				  Return -1;
 		      }
 		      $id = mysql_insert_id();
+    	      $sql = "Insert Into Modelos (nome, Catalogo_Database_idCatalogo_Database, idFactTable) values ('".$table."',$idDatabase,$id)";		   
+			  $query = mysql_query($sql,$con);
+		      If (mysql_error($con)!= null){
+			      //echo "2-2"; echo"<br>".mysql_error($con);
+				  Return -1;
+		      }
           }
 		  $ind = 0;
           $max = sizeof($columns);
