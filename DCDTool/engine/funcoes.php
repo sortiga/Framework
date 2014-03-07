@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 function exibeErros($variavel){
 	if(isset($variavel)){
@@ -7,9 +7,17 @@ function exibeErros($variavel){
 	}
 }
 
+//<DIV STYLE="background-color: #CC0000; position: absolute;
+//left: 200px; top: 810px; height: 50px; width: 200px;">
+
 function exibeMSG($variavel){
 	if(isset($variavel)){
-		echo "<div class='msg'>$variavel</div>";
+	    list($result, $resto) = explode(' ', $variavel, 2);
+		If ($result == "Falha"){
+		    echo "<div style='background-color: #CC0000; color: #FFF; font-size: 1.2em;' class='msg'>$variavel</div>";
+		} else {
+		    echo "<div style='background-color: #007FFF; color: #FFF; font-size: 1.2em;' class='msg'>$variavel</div>";
+        }		
 		unset($variavel);	
 	}
 }
@@ -27,12 +35,14 @@ function logado(){
 }
 
 function adm(){
+    // Aqui tem que mudar isso porque a diferença do ADM é que apenas ele pode cadastrar usuários
 	if($_SESSION['user_tipo'] != 1){
 		header("location: ../index.php");	
 	}
 }
 function mantemLogin(){
-	if($_COOKIE['cookie'] == "1234"){
+    if (array_key_exists('cookie',$_COOKIE) AND $_COOKIE['cookie'] == '1234'){
+	//if($_COOKIE['cookie'] == "1234"){
 		$_SESSION['autenticado'] = true;
 		$_SESSION['user_tipo'] = $_COOKIE['permissao'];		
 	}

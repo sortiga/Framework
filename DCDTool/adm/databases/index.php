@@ -5,16 +5,18 @@
 	mantemLogin();
 	logado();
 	adm();
-	
-
+    extract($_SESSION);	
+    
 	include_once("../topo.php");
 ?>
 
         	<!-- Inner Container Start -->
          <!--   <div class="container"> -->
 		  	<?php
-				//exibeMSG($_SESSION['msg']);
-				//unset($_SESSION['msg']);
+			    If (array_key_exists('msg',$_SESSION) AND $_SESSION['msg'] != null) {
+				    exibeMSG($_SESSION['msg']);
+				    unset($_SESSION['msg']);
+				}
 			?>
 		
 <div class="mws-panel grid_8">
@@ -24,13 +26,11 @@
 <div class="mws-panel-body">
     <div class="mws-panel-toolbar top clearfix">
         <ul>
-            <li><a href="inserir.php" class="mws-ic-16 ic-accept">Inserir Database</a></li>
+            <li><a href="inserir.php?id=<?=$user_instituicao;?>" class="mws-ic-16 ic-accept">Inserir Database</a></li>
         </ul>
     </div>
-	
 	<?php
-	
-		$SQL = "SELECT * FROM catalogo_database_clientsite ORDER BY idCatalogo_Database;";
+		$SQL = "SELECT * FROM catalogo_database where id_instituicao = ".$user_instituicao." ORDER BY idCatalogo_Database;";
 		$resultado = mysqli_query($conexao, $SQL);
 		// retorna o numero de linha da consulta.
 		$total = mysqli_num_rows($resultado);
@@ -42,8 +42,8 @@
 		 <table class="mws-datatable mws-table">
 			<thead>
 				<tr>
-					<th>Descricao</th>                        
-					<th colspan="2">Op&ccedil;&otilde;es</th>
+					<th>Descri&ccedil;&atilde;o</th>                        
+					<th colspan="5">Op&ccedil;&otilde;es</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,8 +55,11 @@
 					?>
 					<tr>
 						<td><?=$descricao;?></td>
-						<td><a href="alterar.php?id=<?=$idCatalogo_Database;?>">Alterar</a></td>
-						<td><a href="excluir.php?id=<?=$idCatalogo_Database;?>">Excluir</a></td>
+						<td><center><a href="alterar.php?id=<?=$idCatalogo_Database;?>&id2=<?=$user_instituicao;?>">Alterar</a></center></td>
+						<td><center><a href="excluir.php?id=<?=$idCatalogo_Database;?>">Excluir</a></center></td>
+						<td><center><a href="consultar.php?id=<?=$idCatalogo_Database;?>">Consultar</a></center></td>
+						<td><center><input type="submit" value="Sincronizar" class="mws-button blue"/></center></td>
+						<td><center><input type="submit" value="Importar" class="mws-button blue"/></center></td>
 					</tr>					
 					<?php	
 				}			

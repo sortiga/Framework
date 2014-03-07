@@ -1,11 +1,4 @@
-ï»¿<?php
-
-
-//
-//  APÓS A EXCLUSÃO TEMOS QUE COMANDAR UMA SINCRONIZAÇÃO AUTOMÁTICA
-//
-
-
+<?php
 	session_start();
 	require_once("../../engine/conexao.php");
 	require_once("../../engine/funcoes.php");
@@ -37,31 +30,6 @@
 		$desc_old = $descricao;$schema_old = $schema;$tpdb_old = $tipodb;$db_old=$database;
 	}
 	
-	if($_POST){
-		extract($_POST);
-					
-		$SQL = "DELETE FROM catalogo_database ";
-		$SQL = $SQL." WHERE idCatalogo_Database =$id;";	
-        //echo "SQL = $SQL";
-        //echo "<br>";			
-        //exit;
-		mysqli_autocommit($conexao, FALSE);
-		mysqli_query($conexao,$SQL);
-			
-		$linhas_deleted = mysqli_affected_rows($conexao);
-		//$linhas_deleted = 0;
-		If ($linhas_deleted <> 1) {
-	        mysqli_rollback($conexao);
-			$_SESSION['msg'] = "Falha na exclusÃ£o.  Tentativa de exclusÃ£o afetaria $linhas_updated linha(s).";
-        } else {
-		    mysqli_commit($conexao);
-			$_SESSION['msg'] = "Sucesso na exclusÃ£o do Database.";
-		}	
-		//mysqli_autocommit($conexao, TRUE);
-		header("location: index.php");		
-	}
-	
-	
 	include_once("../topo.php");
 ?>
 <!-- Inner Container Start -->
@@ -69,7 +37,7 @@
 <form class="mws-form" action="" method="post" enctype="multipart/form-data">
   <div class="mws-panel grid_8">
    <div class="mws-panel-header">
-    <span class="mws-i-24 i-list">Excluir Database</span>
+    <span class="mws-i-24 i-list">Consultar Database</span>
   </div>
   <div class="mws-panel-body">
    <div class="mws-form-block">
@@ -128,10 +96,6 @@
 		</select>
       </div>
     </div>
-<div class="mws-button-row">
-    <input type="submit" value="Excluir" class="mws-button red" />
-    <input type="hidden" name="idCatalogo_Database" value="<?=$id;?>"/>
-</div>
 </div>
 </div>     
 </div>

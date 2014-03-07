@@ -30,7 +30,7 @@
 		
 		if($erros == null){
 			
-			$SQL = "SELECT id, nome, tipo FROM usuario WHERE email = '$email' AND senha = SHA1('$senha');";
+			$SQL = "SELECT a.id, a.nome, a.tipo, a.instituicao_id, b.nome as instituicao_nome, b.sigla, b.dominio, b.url_web_service FROM usuario a, instituicao b WHERE email = '$email' AND senha = SHA1('$senha') AND a.instituicao_id = b.id;";
 			//echo "SQL = $SQL";
 			//echo "</br>";
 			$resultado = mysqli_query($conexao,$SQL);
@@ -63,8 +63,13 @@
 				$_SESSION['user_id'] = $id;
 				$_SESSION['user_name'] = $nome;
 				$_SESSION['user_tipo'] = $tipo;
+				$_SESSION['user_instituicao'] = $instituicao_id;
+				$_SESSION['user_instituicao_nome'] = $instituicao_nome;
+				$_SESSION['user_instituicao_sigla'] = $sigla;
+				$_SESSION['user_instituicao_dominio'] = $dominio;
+				$_SESSION['user_instituicao_webservice'] = $url_web_webservice;
 				$_SESSION['autenticado'] = true;
-				$_SESSION['msg'] = "Teste de Mensagem";
+				//$_SESSION['msg'] = "Teste de Mensagem";
 				//echo "Criou SESSÃO";
 				//echo "</br>";
 				//echo "<pre>";
@@ -74,14 +79,15 @@
 				//exit;
 				if($conectado == 1){
 				    //echo "Cookie criado";
-					setcookie("cookie","1234",time()+3600);  /* expire in 1 hour */	
-					setcookie("permissao",$tipo,time()+3600);  /* expire in 1 hour */	
+					    setcookie("cookie","1234",time()+3600);  /* expire in 1 hour */	
+					    setcookie("permissao",$tipo,time()+3600);  /* expire in 1 hour */	
+					
 				}
 				//exit;
 				if($tipo == 1){
-					header("location: ./usuarios/index.php");			
+					header("location: ./databases/index.php");			
 				}else{
-					header("location: ./usuarios/index.php");			
+					header("location: ./databases/index.php");			
 				}				
 			}
 		

@@ -1,4 +1,4 @@
-Ôªø<?php
+<?php
 	session_start();
 	require_once("../../engine/conexao.php");
 	require_once("../../engine/funcoes.php");
@@ -41,11 +41,11 @@
 		$erros = array();
 		
 		if($descricao == ""){
-			$erros['descricao'] = "Campo obrigat√≥rio.";
+			$erros['descricao'] = "Campo obrigatÛrio.";
 		}
 		
 		if($tipodb == ""){
-			$erros['tipodb'] = "Campo obrigat√≥rio.";
+			$erros['tipodb'] = "Campo obrigatÛrio.";
 		}// else { 
           //  $SQL = "SELECT id_database FROM tipo_database WHERE nm_database = $tipodb ";
  	      //  $resultado = mysqli_query($conexao,$SQL);
@@ -55,55 +55,42 @@
         //}
 		
 		if($database == ""){
-			$erros['database'] = "Campo obrigat√≥rio.";
+			$erros['database'] = "Campo obrigatÛrio.";
 		}
 		
 		if($schema == ""){
-			$erros['schema'] = "Campo obrigat√≥rio.";
+			$erros['schema'] = "Campo obrigatÛrio.";
 		}
 		
 		
 		if($erros == null){
-            If (!($desc_old == $descricao AND $schema_old == $schema AND $tpdb_old == $tipodb AND $db_old == $database)){
- 		        $SQL = "Select * from catalogo_database where `schema` = '$schema' and `database` = '$database' and id_instituicao = $id2 and Tipo_Database_idTipo_Database = $tipodb";
-				//echo $SQL;
-				//exit;
-			    mysqli_query($conexao,$SQL);
-		        $linhas = mysqli_affected_rows($conexao);
-                if($linhas > 0){
-			         $_SESSION['msg'] = "Falha na Atualiza√ß√£o. O esquema $schema do database $database j√° se encontra cadastrado nesta insttui√ß√£o.";
-			    }else{
-			         $SQL = "UPDATE catalogo_database SET `schema`= '$schema', descricao ='$descricao', `database` = '$database', ";
-			         $SQL = $SQL."Tipo_Database_idTipo_Database = $tipodb  WHERE idCatalogo_Database =$id;";	
-                     //echo "SQL = $SQL";
-                     //echo "<br>";			
-			         //exit;
-			         mysqli_autocommit($conexao, FALSE);
-			         mysqli_query($conexao,$SQL);
-			         
-			         $linhas_updated = mysqli_affected_rows($conexao);
-			         //$linhas_updated = 0;
-			         If ($linhas_updated <> 1) {
-			             if (!($desc_old = $descricao AND $schema_old = $schema AND $tpdb_old = $tipodb AND $db_old=$database)){
-			                 mysqli_rollback($conexao);
-			                 $_SESSION['msg'] = "Falha na atualiza√ß√£o.  Tentativa de atualiza√ß√£o afetaria $linhas_updated linha(s).";
-			         	}
-                     } else {
-			         	mysqli_commit($conexao);
-			             $_SESSION['msg'] = "Sucesso na altera√ß√£o do Database.";
-			         }	
+					
+			$SQL = "UPDATE catalogo_database SET `schema`= '$schema', descricao ='$descricao', `database` = '$database', ";
+			$SQL = $SQL."Tipo_Database_idTipo_Database = $tipodb  WHERE idCatalogo_Database =$id;";	
+            //echo "SQL = $SQL";
+            //echo "<br>";			
+			//exit;
+			mysqli_autocommit($conexao, FALSE);
+			mysqli_query($conexao,$SQL);
+			
+			$linhas_updated = mysqli_affected_rows($conexao);
+			//$linhas_updated = 0;
+			If ($linhas_updated <> 1) {
+			    if (!($desc_old = $descricao AND $schema_old = $schema AND $tpdb_old = $tipodb AND $db_old=$database)){
+			        mysqli_rollback($conexao);
+			        $_SESSION['msg'] = "Falha na atualizaÁ„o.  Tentativa de atualizaÁ„o afetaria $linhas_updated linha(s).";
 				}
-			} else{
-                $_SESSION['msg'] = "Falha - Nenhuma modifica√ß√£o foi realizada na defini√ß√£o do database.";				
-			}
+            } else {
+				mysqli_commit($conexao);
+			    $_SESSION['msg'] = "Sucesso na alteraÁ„o do Database.";
+			}	
 			//mysqli_autocommit($conexao, TRUE);
-			header("location: index.php");				
+			header("location: index.php");		
+		
 		} //else {
 		  //echo "Entrei no Else";
 		  //echo "<br>";
 		//}
-		
-		
 	}
 	
 	include_once("../topo.php");
@@ -147,7 +134,7 @@
 		?>			                          
       </div>
 		<?php
-		   //Colocar aqui o c√≥digo para obter a descricao da option default
+		   //Colocar aqui o cÛdigo para obter a descricao da option default
 		   $SQL = "SELECT nm_database FROM tipo_database WHERE id_database = $tipodb ";
 		   //echo "SQL = $SQL";
 		   //exit;
@@ -163,12 +150,12 @@
       <div class="mws-form-item large">
         <select name="tipodb" size="1">
 		<?
-		//Colocar aqui o c√≥digo para carregar as op√ß√µes 
+		//Colocar aqui o cÛdigo para carregar as opÁıes 
    	    $SQL = "SELECT id_database, nm_database as nmdatabase FROM tipo_database order by id_database;";
  	    $resultado = mysqli_query($conexao,$SQL);
 		$total = mysqli_num_rows($resultado);
 		if($total == 0){
-			echo "Tabela Tipo de Databases est√° VAZIA!!!";		
+			echo "Tabela Tipo de Databases est· VAZIA!!!";		
 		}else{
    		    while($linha = mysqli_fetch_array($resultado)){
 				extract($linha);
