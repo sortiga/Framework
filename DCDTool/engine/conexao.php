@@ -1,8 +1,8 @@
 <?php 
 
-	$servidor = "localhost";
+	$servidor = "lod2.inf.puc-rio.br"; //"localhost";
 	$usuario = "root";
-	$senha = "zanfre";
+	$senha = "casanova";//"zanfre";
 	$banco = "pucrj";
 	
 	//$conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
@@ -17,7 +17,7 @@
 //		echo "Erro de Conexão ".mysqli_connect_error();
 //		exit;
 //	}
-	
+
 	mysqli_set_charset($conexao, "utf8");
 
 ?>

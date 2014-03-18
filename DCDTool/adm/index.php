@@ -4,7 +4,7 @@
 	require_once("../engine/funcoes.php");
 	
 	if($_POST){
-		extract($_POST);
+		extract($_POST); 
 		$erros = array();
 		//echo "POST";
         //echo "</br>";
@@ -33,7 +33,7 @@
 			$SQL = "SELECT a.id, a.nome, a.tipo, a.instituicao_id, b.nome as instituicao_nome, b.sigla, b.dominio, b.url_web_service FROM usuario a, instituicao b WHERE email = '$email' AND senha = SHA1('$senha') AND a.instituicao_id = b.id;";
 			//echo "SQL = $SQL";
 			//echo "</br>";
-			$resultado = mysqli_query($conexao,$SQL);
+			If ($resultado = mysqli_query($conexao,$SQL)){
 			
 			//$query = $conexao->prepare($SQL);
             //$query->execute();
@@ -50,10 +50,15 @@
             //exit;
 			
 			
-			$total = mysqli_num_rows($resultado); ///$query->num_rows;
+			  $total = mysqli_num_rows($resultado); ///$query->num_rows;
+			} else {
+			  $total = 0;
+			}
+
 			//echo "Total = $total";
 			//echo "</br>";
 			//exit;
+
 			
 			if($total != 1){
 				$erros['senha'] = "Email e Senha Incorretos.";			

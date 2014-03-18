@@ -49,6 +49,7 @@ try
 				       //$resultt = $objDatabase->Print_Results($result3);
 					   $saida["request_number"] = $json_request_number;
 					   $saida["database_id"] = $json_database_id;
+					   $saida["request_type"] = "SearchCatalog";
 					   $saida["facts_qtt"] = sizeof($result3);
     		    	   If ($result4 = $objDatabase->Get_Dimensoes($objDatabase, $result3)){
 					       $saida["facts"] = $result4; 

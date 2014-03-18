@@ -103,7 +103,13 @@
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
-                    <li><a href="../instituicoes/" class="mws-i-24 i-tag">Instituições</a></li>
+					<?php
+						if($_SESSION['user_tipo'] == 1){
+					?>
+                            <li><a href="../instituicoes/" class="mws-i-24 i-tag">Instituições</a></li>
+					<?php						
+						}					
+					?>
                     <li><a href="../databases/" class="mws-i-24 i-tag">Databases</a></li>
 					<li><a href="../modelos/" class="mws-i-24 i-tag">Modelos</a></li>
 					<li><a href="../assuntos/" class="mws-i-24 i-tag">Assuntos</a></li>

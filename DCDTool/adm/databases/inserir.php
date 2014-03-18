@@ -121,7 +121,7 @@
 			   exibeErros($erros['descricao']);
 			}
 		?>			                          
-      </div>
+      </div> 
 	  <label for="tipodb">Tipo do Database</label>
       <div class="mws-form-item large">
         <select name="tipodb" size="1">
@@ -168,3 +168,4 @@
 <?php
 	include_once("../rodape.php");
 ?>
+

@@ -826,6 +826,39 @@ class BALDatabaseMySQL extends AbstractDatabase
 			   Return 1;
 		   }
     }
+
+	public function UpdCatalogoInterno($idDb,$idTipo,$descDb,$database,$schema,$con) {
+			 // Verificar se o registro já existe, casa exista, fazer update, caso contrário fazer insert
+    	     $sql = "Select * from catalogo_database_clientsite where idCatalogo_Database = $idDb; ";		   
+             //echo $sql;echo "</br>";
+			 $query = mysql_query($sql,$con);
+		     If (mysql_error($con)!= null){
+			     //echo "erro 3"; echo"<br>".mysql_error($con);
+				 Return -1;
+		     }
+			 $rows = mysql_num_rows($query);
+			 //echo $rows;echo "</br>";
+		     If (mysql_num_rows($query)>0){			 
+				 $sql = "Update catalogo_database_clientsite ";
+				 $sql = $sql." Set Tipo_Database_idTipo_Database = $idTipo,";
+				 $sql = $sql." descricao = '$descDb', ";
+				 $sql = $sql." `database` = '$database', ";
+				 $sql = $sql." `schema` = '$schema' ";
+				 $sql = $sql." Where idCatalogo_Database = $idDb ";
+		     }else{			 
+    	         $sql = "Insert Into catalogo_database_clientsite ";
+			     $sql = $sql."(idCatalogo_Database,Tipo_Database_idTipo_Database, descricao, `database`, `schema`) ";
+			     $sql = $sql."values ($idDb,$idTipo,'".$descDb."','".$database."','".$schema."') ";
+			 }
+             //echo $sql;echo "</br>";
+	         $query = mysql_query($sql,$con);
+		     If (mysql_error($con)!= null){
+		         //echo "4"; echo"<br>".mysql_error($con);
+				 Return -1;
+		     } else {
+			     Return 0;
+             }			 
+    }
 	
 }
 ?>

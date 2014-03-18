@@ -170,7 +170,7 @@ try
         $deMsg = "Error during Load Table Process";
         $result = $objDatabase->InsErrMsg($idAgendamento,$deMsg,$con);				 
     }
-    $result = $objDatabase->UpdAgendamento($idAgendamento,$status,$con);
+    //$result = $objDatabase->UpdAgendamento($idAgendamento,$status,$con);
 	mysql_query('COMMIT');
 	//echo "COMMIT 1!!!";
     mysql_query('SET AUTOCOMMIT=1'); 
