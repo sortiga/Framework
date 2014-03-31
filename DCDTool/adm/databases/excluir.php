@@ -2,7 +2,7 @@
 
 
 //
-//  AP”S A EXCLUS√O TEMOS QUE COMANDAR UMA SINCRONIZA«√O AUTOM¡TICA
+//  AP√ìS A EXCLUS√ÉO TEMOS QUE COMANDAR UMA SINCRONIZA√á√ÉO AUTOM√ÅTICA
 //
 
 
@@ -12,7 +12,7 @@
 	logado();
 	//adm();
 	mantemLogin();
-	
+
 	if($_GET){
 	    //echo "<pre>";
 		//print_r($_GET);
@@ -20,7 +20,7 @@
 		extract($_GET);
 		//echo "ID = $id";
 		//exit;
-		
+
 		$SQL = "SELECT descricao, Tipo_Database_idTipo_Database as tipodb, ";
 		$SQL = $SQL." `database`, `schema` FROM catalogo_database WHERE idCatalogo_Database = $id;";
 		//echo "SQL = $SQL";
@@ -36,10 +36,10 @@
 		extract($linha);	
 		$desc_old = $descricao;$schema_old = $schema;$tpdb_old = $tipodb;$db_old=$database;
 	}
-	
+
 	if($_POST){
 		extract($_POST);
-					
+
 		$SQL = "DELETE FROM catalogo_database ";
 		$SQL = $SQL." WHERE idCatalogo_Database =$id;";	
         //echo "SQL = $SQL";
@@ -47,21 +47,21 @@
         //exit;
 		mysqli_autocommit($conexao, FALSE);
 		mysqli_query($conexao,$SQL);
-			
+
 		$linhas_deleted = mysqli_affected_rows($conexao);
 		//$linhas_deleted = 0;
 		If ($linhas_deleted <> 1) {
 	        mysqli_rollback($conexao);
-			$_SESSION['msg'] = "Falha na exclus√£o.  Tentativa de exclus√£o afetaria $linhas_updated linha(s).";
+			$_SESSION['msg'] = "Falha na exclus√É¬£o.  Tentativa de exclus√É¬£o afetaria $linhas_deleted linha(s).";
         } else {
 		    mysqli_commit($conexao);
-			$_SESSION['msg'] = "Sucesso na exclus√£o do Database.";
+			$_SESSION['msg'] = "Sucesso na exclus√É¬£o do Database.";
 		}	
 		//mysqli_autocommit($conexao, TRUE);
 		header("location: index.php");		
 	}
-	
-	
+
+
 	include_once("../topo.php");
 ?>
 <!-- Inner Container Start -->
@@ -88,7 +88,7 @@
         <input type="text" id ="descricao" name="descricao" value="<?=$descricao;?>" class="mws-textinput" disabled="disabled" />
       </div>
 		<?php
-		   //Colocar aqui o cÛdigo para obter a descricao da option default
+		   //Colocar aqui o c√≥digo para obter a descricao da option default
 		   $SQL = "SELECT nm_database FROM tipo_database WHERE id_database = $tipodb ";
 		   //echo "SQL = $SQL";
 		   //exit;
@@ -104,12 +104,12 @@
       <div class="mws-form-item large">
         <select name="tipodb" size="1" disabled="disabled">
 		<?
-		//Colocar aqui o cÛdigo para carregar as opÁıes 
+		//Colocar aqui o c√≥digo para carregar as op√ß√µes 
    	    $SQL = "SELECT id_database, nm_database as nmdatabase FROM tipo_database order by id_database;";
  	    $resultado = mysqli_query($conexao,$SQL);
 		$total = mysqli_num_rows($resultado);
 		if($total == 0){
-			echo "Tabela Tipo de Databases est· VAZIA!!!";		
+			echo "Tabela Tipo de Databases est√° VAZIA!!!";		
 		}else{
    		    while($linha = mysqli_fetch_array($resultado)){
 				extract($linha);

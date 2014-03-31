@@ -8,20 +8,15 @@
 	extract($_SESSION);
 
 	if($_GET){
-	    //echo "<pre>";
-		//print_r($_GET);
-		//echo "</pre>";
 		extract($_GET);
-		//echo $id;
-		//exit;
     }
 
 	if($_POST){
 	   extract($_POST);
-       $_SESSION['database']=$idcategoria;
+       $_SESSION['database']=$iddatabase;
 			
-			//echo $idcategoria;
-			//exit;
+  	   echo $iddatabase;
+	   exit;
 			
 	   header("location: index_01.php");	   
 	}
@@ -55,14 +50,13 @@
 			    If (array_key_exists('user_instituicao',$_SESSION) AND $_SESSION['user_instituicao'] != null) {
 				    $idInstituicao = $_SESSION['user_instituicao'];
 				}				
-				If (!(isset($id_categoria))){
-				   If (!(isset($idcategoria))){ 
-				      $id_categoria = 1;
+				If (!(isset($id_database))){
+				   If (!(isset($iddatabase))){ 
+				      $id_database = 1;
 				   }else{
-				      $id_categoria = $idcategoria;
+				      $id_database = $iddatabase;
 				   }
-				}				
-				
+				}					
 			?>
 		
 <div class="mws-panel grid_8">
@@ -71,13 +65,12 @@
    </div>
    <div class="mws-panel-body">
     <div class="mws-panel-toolbar top clearfix">
-	  <label for="idcategoria"><p style="font-size:16px">Selecione abaixo o database cujos modelos você deseja recuperar</p></label>
+	  <label for="idcategoria"><p style="font-size:16px">Database</p></label>
       <div class="mws-form-item large">
         <select name="idcategoria" size="1">
 		<?
 		//Colocar aqui o código para carregar as opções 
-		$SQL = "Select  idCatalogo_Database as idcategoria, `schema`, `database` as nmcategoria from catalogo_database where id_instituicao = $idInstituicao order by `database`;";
-   	    //$SQL = "SELECT id as idcategoria, nome as nmcategoria FROM categoria_assunto order by id;";
+		$SQL = "Select  idCatalogo_Database as iddatabase, `schema`, `database` as nmdatabase from catalogo_database where id_instituicao = $idInstituicao order by `database`;";
  	    $resultado = mysqli_query($conexao,$SQL);
 		$total = mysqli_num_rows($resultado);
 		if($total == 0){
@@ -89,7 +82,7 @@
 				//echo "Tipo ".$tipodb;echo "<br>";
 				//exit;
 				?>
-			   <option value=<?=$idcategoria;?> <?php marcaSelect($idcategoria,$id_categoria);?>><?=$nmcategoria." - ".$schema;?></option>
+			   <option value=<?=$iddatabase;?> <?php marcaSelect($iddatabase,$id_database);?>><?=$schema." - ".$nmdatabase;?></option>
         <?php
 			   }
 		}	
@@ -98,8 +91,8 @@
       </div>
 	<div class="mws-button-row">
 		  <input type="submit" value="Consultar" class="mws-button orange" />
-          <input type="hidden" name="id_categoria" value="<?=$idcategoria;?>"/>
-		  <input type="hidden" name="nm_categoria" value="<?=$nmcategoria;?>"/>
+          <input type="hidden" name="id_database" value="<?=$iddatabase;?>"/>
+		  <input type="hidden" name="nm_database" value="<?=$nmdatabase;?>"/>
     </div>	
 </div>
 </div>

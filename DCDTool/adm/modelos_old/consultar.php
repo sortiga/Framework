@@ -1,18 +1,11 @@
 <?php
-
-
-//
-//  APÓS A EXCLUSÃO TEMOS QUE COMANDAR UMA SINCRONIZAÇÃO AUTOMÁTICA
-//
-
-
 	session_start();
 	require_once("../../engine/conexao.php");
 	require_once("../../engine/funcoes.php");
 	logado();
 	//adm();
 	mantemLogin();
-
+	
 	if($_GET){
 	    //echo "<pre>";
 		//print_r($_GET);
@@ -58,32 +51,11 @@
 	}
 
 	if($_POST){
-		extract($_POST);
-
-		if (isset($excluir)){
-		    $SQL = "DELETE FROM assuntos ";
-		    $SQL = $SQL." WHERE idAssuntos =$id;";	
-            //echo "SQL = $SQL";
-            //echo "<br>";			
-            //exit;
-		    mysqli_autocommit($conexao, FALSE);
-		    mysqli_query($conexao,$SQL);
-            
-		    $linhas_deleted = mysqli_affected_rows($conexao);
-		    //$linhas_deleted = 0;
-		    If ($linhas_deleted <> 1) {
-	            mysqli_rollback($conexao);
-		    	$_SESSION['msg'] = "Falha na exclusão.  Tentativa de exclusão afetaria $linhas_deleted linha(s).";
-            } else {
-		        mysqli_commit($conexao);
-		    	$_SESSION['msg'] = "Sucesso na exclusão do Assunto.";
-		    }	
-		    //mysqli_autocommit($conexao, TRUE);
-        }
-	    header("location: index_01.php");	
+      header("location: index_01.php");
+	  echo "POST";
+	  exit;
 	}
-
-
+	
 	include_once("../topo.php");
 ?>
 <!-- Inner Container Start -->
@@ -91,7 +63,7 @@
 <form class="mws-form" action="" method="post" enctype="multipart/form-data">
   <div class="mws-panel grid_8">
    <div class="mws-panel-header">
-    <span class="mws-i-24 i-list">Excluir Database</span>
+    <span class="mws-i-24 i-list">Consultar Assunto</span>
   </div>
   <div class="mws-panel-body">
    <div class="mws-form-block">
@@ -116,9 +88,8 @@
     </div>
 </div>
 <div class="mws-button-row">
-    <input type="submit" name="excluir" value="Excluir" class="mws-button red" />
-	<input type="submit" name="retornar" value="Retornar" class="mws-button orange" />
-    <input type="hidden" name="id" value="<?=$id;?>"/>
+    <input type="submit" value="Retornar" class="mws-button orange" />
+	<input type="hidden" name="id" value="<?=$id;?>"/>
 </div>
 </div>     
 </div>

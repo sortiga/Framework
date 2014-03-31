@@ -18,12 +18,22 @@
 
 	if($_POST){
 	   extract($_POST);
-       $_SESSION['database']=$idcategoria;
-			
-			//echo $idcategoria;
-			//exit;
-			
-	   header("location: index_01.php");	   
+       //echo $id_categoria;echo "<br>";
+       //echo $idcategoria;   
+	   
+	   //PERCY É O COMANDO ABAIXO QUE TÁ DANDO MERDA...		
+		
+ 	    //$resultado = mysqli_query($conexao,$SQL);
+		//$total = mysqli_num_rows($resultado);
+		//if($total == 0){
+			//$_SESSION['msg'] = 'Categoria não cadastrada ou erro no acesso ao banco de dados.';		
+   	        //header("location: index.php");	   
+		//}else{
+	        $_SESSION['categoria']=$idcategoria;
+	        header("location: index_01.php");	   
+		//}	
+	   //echo $nmcategoria;
+	   //exit;
 	}
 	
 	include_once("../topo.php");
@@ -67,21 +77,20 @@
 		
 <div class="mws-panel grid_8">
    <div class="mws-panel-header">
-      <span class="mws-i-24 i-table-1">Modelos</span>
+      <span class="mws-i-24 i-table-1">Assuntos</span>
    </div>
    <div class="mws-panel-body">
     <div class="mws-panel-toolbar top clearfix">
-	  <label for="idcategoria"><p style="font-size:16px">Selecione abaixo o database cujos modelos você deseja recuperar</p></label>
+	  <label for="idcategoria"><p style="font-size:16px">Categoria</p></label>
       <div class="mws-form-item large">
         <select name="idcategoria" size="1">
 		<?
 		//Colocar aqui o código para carregar as opções 
-		$SQL = "Select  idCatalogo_Database as idcategoria, `schema`, `database` as nmcategoria from catalogo_database where id_instituicao = $idInstituicao order by `database`;";
-   	    //$SQL = "SELECT id as idcategoria, nome as nmcategoria FROM categoria_assunto order by id;";
+   	    $SQL = "SELECT id as idcategoria, nome as nmcategoria FROM categoria_assunto order by id;";
  	    $resultado = mysqli_query($conexao,$SQL);
 		$total = mysqli_num_rows($resultado);
 		if($total == 0){
-			echo "Tabela Catalogo_Database está VAZIA!!!";		
+			echo "Tabela Categoria_Assunto está VAZIA!!!";		
 		}else{
    		    while($linha = mysqli_fetch_array($resultado)){
 				extract($linha);
@@ -89,7 +98,7 @@
 				//echo "Tipo ".$tipodb;echo "<br>";
 				//exit;
 				?>
-			   <option value=<?=$idcategoria;?> <?php marcaSelect($idcategoria,$id_categoria);?>><?=$nmcategoria." - ".$schema;?></option>
+			   <option value=<?=$idcategoria;?> <?php marcaSelect($idcategoria,$id_categoria);?>><?=$nmcategoria;?></option>
         <?php
 			   }
 		}	

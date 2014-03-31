@@ -174,7 +174,8 @@
                         
                     </div>
 						<a href="esqueci-senha.php" style="color:white;text-decoration:none;">Lembrar Senha</a>
-					                    
+						<br>
+						<a href="cadastrar.php" style="color:white;text-decoration:none;">Solicitar acesso</a>					                    
                     
                 </form>
             </div>

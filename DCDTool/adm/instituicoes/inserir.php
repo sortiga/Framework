@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	session_start();
 	require_once("../../engine/conexao.php");
 	require_once("../../engine/funcoes.php");
@@ -16,43 +16,31 @@
     }
 	
 	if($_POST){
-		$idcateg = $_POST['idcateg'];
-		
 		extract($_POST);
 		$erros = array();
 		
-		$SQL = "   Select nome as nmcateg from categoria_assunto where id = $idcateg";
-		
-		
-		$resultado = mysqli_query($conexao,$SQL);
-	    $linhas = mysqli_affected_rows($conexao);
-        if($linhas > 0){
-  		   $linha = mysqli_fetch_array($resultado);
-		   extract($linha);		   
-        }else{
-		   $_SESSION['msg'] = "Falha - Não foi possível recuperar a categoria informada.";
-		   header("location: index.php");
-        }		
-		
-	
 		if($descricao == ""){
 			$erros['descricao'] = "Campo obrigatório.";
 		}
-			
-		if($palavras_chave == ""){
-			$erros['palavras_chave'] = "Campo obrigatório.";
+		
+		if($nome == ""){
+			$erros['nome'] = "Campo obrigatório.";
 		}
-			
+				
+		if($dominio == ""){
+			$erros['dominio'] = "Campo obrigatório.";
+		}
+		
 		if($erros == null){
 
-			$SQL = "Select * from assuntos where descricao = '$descricao' and id_categoria = $idcateg ";
+			$SQL = "Select * from instituicao where nome = '$nome'; ";
 			mysqli_query($conexao,$SQL);
 		    $linhas = mysqli_affected_rows($conexao);
             if($linhas > 0){
-			     $_SESSION['msg'] = "Falha na Inserção. O assunto $descricao já se encontra cadastrado na categoria $nmcateg.";
+			     $_SESSION['msg'] = "Falha na Inserção. A instituição $nome já se encontra cadastrada.";
 			}else{
-   		        $SQL = "INSERT INTO assuntos (descricao, palavras_chave, urls, id_categoria)  ";
-			    $SQL = $SQL." values ('$descricao', '$palavras_chave', '$urls', $idcateg); ";
+   		        $SQL = "INSERT INTO instituicao (nome, sigla, dominio, descricao, url_web_service)  ";
+			    $SQL = $SQL." values ( '$nome','$sigla','$dominio','$descricao','$url_web_service'); ";
                 //echo "SQL = $SQL";
                 //echo "<br>";			
 			    //exit;
@@ -66,11 +54,11 @@
 		            $_SESSION['msg'] = "Falha na Inserção.  Tentativa de inserção afetaria $linhas_inserted linha(s).";
                 } else {
 			    	mysqli_commit($conexao);
-			        $_SESSION['msg'] = "Sucesso na inclusão de um novo assunto para a categoria ".$nmcateg."." ;
+			        $_SESSION['msg'] = "Sucesso na inclusão da nova Instituição.";
 			    }	
 			    //mysqli_autocommit($conexao, TRUE);
 		    }
-		    header("location: index_01.php");		
+		    header("location: index.php");		
 		} 
 	}
 	
@@ -78,27 +66,51 @@
 ?>
 <!-- Inner Container Start -->
 <?php
+   if (!isset($nome)){
+      $nome = null;
+	}
+   if (!isset($sigla)){
+      $sigla = null;
+	}
+   if (!isset($dominio)){
+      $dominio = null;
+	}
    if (!isset($descricao)){
       $descricao = null;
 	}
-   if (!isset($palavras_chave)){
-      $palavras_chave = null;
-	}
-   if (!isset($urls)){
-      $urls = null;
+   if (!isset($url_web_service)){
+      $url_web_service = null;
 	}
 ?>			                          
 <div class="container">
 <form class="mws-form" action="" method="post" enctype="multipart/form-data">
   <div class="mws-panel grid_8">
    <div class="mws-panel-header">
-    <span class="mws-i-24 i-list">Inserir Assunto</span>
+    <span class="mws-i-24 i-list">Inserir Instituição</span>
   </div>
   <div class="mws-panel-body">
    <div class="mws-form-block">
 
     <div class="mws-form-row">
-      <label for="descricao">Assunto</label>
+      <label for="nome">Instituição</label>
+      <div class="mws-form-item large">
+        <input type="text" id ="nome" name="nome" value="<?=$nome;?>" class="mws-textinput"/>
+		<?php
+            if (isset($erros['nome'])){
+			   exibeErros($erros['nome']);
+			}
+		?>			                          
+      </div>
+      <label for="sigla">Sigla</label>
+      <div class="mws-form-item large">
+        <input type="text" id ="sigla" name="sigla" value="<?=$sigla;?>" class="mws-textinput"/>
+		<?php
+            if (isset($erros['sigla'])){
+			   exibeErros($erros['sigla']);
+			}
+		?>			                          
+      </div>
+      <label for="descricao">Descricao</label>
       <div class="mws-form-item large">
         <input type="text" id ="descricao" name="descricao" value="<?=$descricao;?>" class="mws-textinput"/>
 		<?php
@@ -106,22 +118,22 @@
 			   exibeErros($erros['descricao']);
 			}
 		?>			                          
-      </div>
-      <label for="palavras_chave">Palavras Chaves para Pesquisa</label>
+      </div> 
+      <label for="dominio">Dominio</label>
       <div class="mws-form-item large">
-        <input type="text" id ="palavras_chave" name="palavras_chave" value="<?=$palavras_chave;?>" class="mws-textinput"/>
+        <input type="text" id ="dominio" name="dominio" value="<?=$dominio;?>" class="mws-textinput"/>
 		<?php
-            if (isset($erros['palavras_chave'])){
-			   exibeErros($erros['palavras_chave']);
+            if (isset($erros['dominio'])){
+			   exibeErros($erros['dominio']);
 			}
 		?>			                          
-      </div>
-      <label for="urls">URLs Relacionadas</label>
+      </div> 
+      <label for="url_web_service">URL do Web Service</label>
       <div class="mws-form-item large">
-        <input type="text" id ="urls" name="urls" value="<?=$urls;?>" class="mws-textinput"/>
+        <input type="text" id ="url_web_service" name="url_web_service" value="<?=$url_web_service;?>" class="mws-textinput"/>
 		<?php
-            if (isset($erros['urls'])){
-			   exibeErros($erros['urls']);
+            if (isset($erros['url_web_service'])){
+			   exibeErros($erros['url_web_service']);
 			}
 		?>			                          
       </div> 
@@ -130,7 +142,7 @@
 <div class="mws-button-row">
     <input type="submit" value="Inserir" class="mws-button red" />
 	<input type="reset" value="Limpar" class="mws-button gray" />
-	<input type="hidden" name="idcateg" value="<?=$idcateg;?>"/>
+	<input type="hidden" name="idCatalogo_Database" value="<?=$id;?>"/>
 </div>
 </div>     
 </div>

@@ -1,9 +1,13 @@
 ﻿<?php
 	session_start();
-	//require_once("../../engine/conexao.php");
-	//require_once("../../engine/funcoes.php");
+	require_once("../../engine/conexao.php");
+	require_once("../../engine/funcoes.php");
+	logado();
+//adm();
+	mantemLogin();
+
 	
-	$servidor = "localhost";
+/*	$servidor = "localhost";
 	$usuario = "root";
 	$senha = "zanfre";
 	$banco = "aulaphp";
@@ -28,7 +32,7 @@
 	if($_SESSION['user_tipo'] != 1){
 		header("location: ../index.php");	
 	}
-	
+*/	
 
 	include_once("../topo.php");
 ?>
@@ -36,14 +40,15 @@
 
         	<!-- Inner Container Start -->
             <div class="container">
-			<?php
-				if(isset($_SESSION['msg'])){
-            		echo "<div class='msg'>".$_SESSION['msg']."</div>";
-            		unset($_SESSION['msg']);	
-             	}
-				unset($_SESSION['msg']);
+		  	<?php
+			    If (array_key_exists('msg',$_SESSION) AND $_SESSION['msg'] != null) {
+				    exibeMSG($_SESSION['msg']);
+				    unset($_SESSION['msg']);
+				}
 			?>
-		
+
+
+			
 <div class="mws-panel grid_8">
    <div class="mws-panel-header">
     <span class="mws-i-24 i-table-1">Usuarios</span>
@@ -57,7 +62,7 @@
 	
 	<?php
 	
-		$SQL = "SELECT * FROM usuarios ORDER BY nome;";
+		$SQL = "SELECT * FROM usuario ORDER BY nome;";
 		$resultado = mysqli_query($conexao, $SQL);
 		// retorna o numero de linha da consulta.
 		$total = mysqli_num_rows($resultado);
@@ -70,7 +75,7 @@
 			<thead>
 				<tr>
 					<th>Nome</th>                        
-					<th colspan="2">Op&ccedil;&otilde;es</th>
+					<th colspan="3">Op&ccedil;&otilde;es</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -80,8 +85,9 @@
 					?>
 					<tr>
 						<td><?=$nome;?></td>
-						<td><a href="alterar.php?id=<?=$id;?>">Alterar</a></td>
-						<td><a href="excluir.php?id=<?=$id;?>">Excluir</a></td>
+						<td><center><a href="alterar.php?id=<?=$id;?>">Alterar</a></center></td>
+						<td><center><a href="excluir.php?id=<?=$id;?>">Excluir</a></center></td>
+						<td><center><a href="consultar.php?id=<?=$id;?>">Consultar</a></center></td>
 					</tr>					
 					<?php	
 				}			

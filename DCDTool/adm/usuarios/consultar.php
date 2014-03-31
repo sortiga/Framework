@@ -1,11 +1,4 @@
 Ôªø<?php
-
-
-//
-//  AP”S A EXCLUS√O TEMOS QUE COMANDAR UMA SINCRONIZA«√O AUTOM¡TICA
-//
-
-
 	session_start();
 	require_once("../../engine/conexao.php");
 	require_once("../../engine/funcoes.php");
@@ -35,31 +28,6 @@
 		extract($linha);	
 	}
 	
-	if($_POST){
-		extract($_POST);
-					
-		$SQL = "DELETE FROM usuario ";
-		$SQL = $SQL." WHERE id =$id;";	
-        //echo "SQL = $SQL";
-        //echo "<br>";			
-        //exit;
-		mysqli_autocommit($conexao, FALSE);
-		mysqli_query($conexao,$SQL);
-			
-		$linhas_deleted = mysqli_affected_rows($conexao);
-		//$linhas_deleted = 0;
-		If ($linhas_deleted <> 1) {
-	        mysqli_rollback($conexao);
-			$_SESSION['msg'] = "Falha na exclus√£o.  Tentativa de exclus√£o afetaria $linhas_deleted linha(s).";
-        } else {
-		    mysqli_commit($conexao);
-			$_SESSION['msg'] = "Sucesso na exclus√£o do Usu√°rio.";
-		}	
-		//mysqli_autocommit($conexao, TRUE);
-		header("location: index.php");		
-	}
-	
-	
 	include_once("../topo.php");
 ?>
 <!-- Inner Container Start -->
@@ -67,7 +35,7 @@
 <form class="mws-form" action="" method="post" enctype="multipart/form-data">
   <div class="mws-panel grid_8">
    <div class="mws-panel-header">
-    <span class="mws-i-24 i-list">Excluir Usu√°rio</span>
+    <span class="mws-i-24 i-list">Consultar Usu√°rio</span>
   </div>
   <div class="mws-panel-body">
    <div class="mws-form-block">
@@ -155,13 +123,8 @@
     </div>
   </div>
 </div>
-   
-<div class="mws-button-row">
-    <input type="submit" value="Excluir" class="mws-button red" />
-    <input type="hidden" name="idCatalogo_Database" value="<?=$id;?>"/>
-</div>
-</div>
 </div>     
+</div>
 </form>    
 </div>
 <?php

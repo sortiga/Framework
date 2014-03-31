@@ -23,7 +23,6 @@
 		
 		$SQL = "   Select nome as nmcateg from categoria_assunto where id = $idcateg";
 		
-		
 		$resultado = mysqli_query($conexao,$SQL);
 	    $linhas = mysqli_affected_rows($conexao);
         if($linhas > 0){
